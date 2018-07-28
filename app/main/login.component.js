@@ -13,6 +13,13 @@ class LoginController {
       password: 'password'
     };
 
+    this.user = {
+      email: '',
+      password: ''
+    }
+
+    this.typePass = 'password';
+
     this.login = (credentials) => {
       this.authenticating = true;
 
@@ -47,39 +54,69 @@ export const login = {
   controller: LoginController,
 
   template:  `
-    <div class="container">
-      <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-        <h3>Log In</h3>
-        <p>(This login screen is for demonstration only... just pick a username, enter 'password' and click <b>"Log in"</b>)</p>
-        <hr>
+
+    <div layout="row" layout-padding>
+      <div flex="10" flex-xs="5" flex-lg="20"></div>
     
-        <div>
-          <label for="username">Username:</label>
-          <select class="form-control" name="username" id="username"
-            ng-model="$ctrl.credentials.username" ng-options="username for username in $ctrl.usernames"></select>
-          <i style="position: relative; bottom: 1.8em; margin-left: 10em; height: 0" ng-hide="$ctrl.credentials.username" class="fa fa-arrow-left bounce-horizontal"> Choose </i>
-        </div>
-        <br>
-    
-        <div>
-          <label for="password">Password:</label>
-          <input class="form-control" type="password" name="password" ng-model="$ctrl.credentials.password">
-          <i style="position: relative; bottom: 1.8em; margin-left: 5em; height: 0"
-              ng-hide="!$ctrl.credentials.username || $ctrl.credentials.password == 'password'" class="fa fa-arrow-left bounce-horizontal">
-            Enter '<b>password</b>' here
-          </i>
-        </div>
-    
-        <div ng-show="$ctrl.errorMessage" class="well error">{{ $ctrl.errorMessage }}</div>
-    
-        <hr>
-        <div>
-          <button class="btn btn-primary" type="button"
-              ng-disabled="$ctrl.authenticating" ng-click="$ctrl.login($ctrl.credentials)">
-            <i class="fa fa-spin fa-spinner" ng-show="$ctrl.authenticating"></i> <span>Log in</span>
-          </button>
-          <i ng-show="$ctrl.credentials.username && $ctrl.credentials.password == 'password'" style="position: relative;" class="fa fa-arrow-left bounce-horizontal"> Click Me!</i>
-      </div>
+      <md-card flex="80" flex-xs="90" flex-lg="60">
+      
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Log in</span>
+          </md-card-title-text>
+        </md-card-title>
+        
+        <md-divider></md-divider>
+        
+        <md-card-content>
+        
+          <div layout="row" layout-wrap>
+          
+            <div flex="50" flex-xs="100">
+              <img class="login-img" src="/assets/images/login.png" alt="Login"/>
+              <p>
+                Bienvenid@ al universo Blockchain.
+                <br>
+                Bienvenid@ a Bit2Me.
+              </p>
+            </div>
+          
+            <div flex="50" flex-xs="100">
+              <p>Introduce tu correo electrónico y contraseña para continuar.</p>
+              <md-input-container class="md-block">
+                <label>Email</label>
+                <input ng-model="user.email">
+              </md-input-container>
+              
+              <md-input-container class="md-block">
+                <label>Contraseña</label>
+                <input type="{{$ctrl.typePass}}" ng-model="user.password">
+                <md-icon ng-click="$ctrl.typePass = 'text'" ng-if="$ctrl.typePass == 'password'" class="fa fa-eye"></md-icon>
+                <md-icon ng-click="$ctrl.typePass = 'password'" ng-if="$ctrl.typePass == 'text'" class="fa fa-eye-slash"></md-icon>
+              </md-input-container>
+              
+              <div layout="row">
+                <div flex></div>
+                <a href="#">Recordar contraseña</a>
+              </div>
+              <div class="pt-30"></div>
+                <md-button flex class="md-primary md-raised btn-login">Entrar</md-button>
+                        
+              <div layout="row">
+                <div flex></div>    
+                <p class="pt-30">¿Todavía no tienes  cuenta en Bit2Me?</p>
+                <div flex></div>
+              </div>
+              
+              <md-button flex class="md-primary btn-registrate"><b>Registrate</b></md-button>
+            </div>
+          
+          </div>
+        </md-card-content>
+      </md-card>
+      
+      <div flex="10" flex-xs="5" flex-lg="20"></div>
     </div>
+
     `
 };

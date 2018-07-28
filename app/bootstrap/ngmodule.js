@@ -4,6 +4,7 @@
  */
 // External dependencies
 import * as angular from "angular";
+import ngMaterial from "angular-material";
 import uiRouter from "@uirouter/angularjs";
 import { StickyStatesPlugin } from '@uirouter/sticky-states';
 import { DSRPlugin } from '@uirouter/dsr';
@@ -21,6 +22,7 @@ export const ngmodule = angular.module("demo", [
   ocLazyLoad,
   MAIN_MODULE.name,
   GLOBAL_MODULE.name,
+  ngMaterial,
 
   // These modules are lazy loaded via future states in app.states.js
   // CONTACTS_MODULE.name
@@ -33,5 +35,5 @@ ngmodule.config(['$uiRouterProvider', '$locationProvider', ($uiRouter, $location
   $uiRouter.plugin(StickyStatesPlugin);
   $uiRouter.plugin(DSRPlugin);
   // Show the UI-Router Visualizer
-  import("@uirouter/visualizer").then(module => $uiRouter.plugin(module.Visualizer));
+  // import("@uirouter/visualizer").then(module => $uiRouter.plugin(module.Visualizer));
 }]);

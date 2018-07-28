@@ -1,8 +1,5 @@
 /**
- * The controller for the `login` component
- *
- * The `login` method validates the credentials.
- * Then it sends the user back to the `returnTo` state, which is provided as a resolve data.
+ * The controller for the `signup` componen
  */
 class LoginController {
   constructor(AppConfig, AuthService, $state) {
@@ -13,23 +10,8 @@ class LoginController {
       password: 'password'
     };
 
-    this.login = (credentials) => {
-      this.authenticating = true;
-
-      const returnToOriginalState = () => {
-        let state = this.returnTo.state();
-        let params = this.returnTo.params();
-        let options = Object.assign({}, this.returnTo.options(), { reload: true });
-        $state.go(state, params, options);
-      };
-
-      const showError = (errorMessage) =>
-          this.errorMessage = errorMessage;
-
-      AuthService.authenticate(credentials.username, credentials.password)
-          .then(returnToOriginalState)
-          .catch(showError)
-          .finally(() => this.authenticating = false);
+    this.signup = (credentials) => {
+      console.log('creando usuario...');
     }
   }
 }

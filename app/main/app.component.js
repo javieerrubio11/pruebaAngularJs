@@ -31,20 +31,30 @@ AuthedController.$inject = ['AppConfig', 'AuthService', '$state', '$transitions'
  */
 export const app = {
   controller: AuthedController,
-  template: `
-    <div class="navheader">
-      <ul ng-if="::$ctrl.isAuthenticated" class="nav nav-tabs">
-        <!--<li ui-sref-active="active"> <a ui-sref="mymessages" role="button"> Messages </a> </li>-->
-        <!--<li ui-sref-active="active"> <a ui-sref="contacts" role="button"> Contacts </a> </li>-->
-        <!--<li ui-sref-active="active"> <a ui-sref="prefs" role="button"> Preferences </a> </li>-->
-    
-        <li ui-sref-active="active" class="navbar-right"> <a role="button"> Log Out </a> </li>
-        <li class="navbar-right" style="margin: 0.75em 0.5em;"><b>{{::$ctrl.emailAddress}}</b></li>
-      </ul>
-    </div>
-    
+  template:
+  `
     <div ui-view></div>
-    <div ui-view="mymessages" ng-show="$ctrl.isActive('mymessages.**')"></div>
-    <div ui-view="contacts" ng-show="$ctrl.isActive('contacts.**')"></div>
-`
+    
+    <md-toolbar class="grey">
+      <div class="md-toolbar-tools">
+
+
+        <span md-truncate>Privacidad | Legal | Términos y condiciones</span>
+        
+        <div flex></div>
+        
+        <span md-truncate>@ 2018 bit2me.com</span>
+        
+        <span>
+          <md-icon class="fa fa-twitter"></md-icon>
+          <md-icon class="fa fa-google"></md-icon>
+          <md-icon class="fa fa-linkedin"></md-icon>
+          <md-icon class="fa fa-facebook"></md-icon>
+        </span>
+        
+        <span>translate..</span>
+
+      </div>
+    </md-toolbar>
+  `
 }

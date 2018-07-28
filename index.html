@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles/app.css">
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
-</head>
 
-<body ng-app="demo" ng-strict-di>
-    <!-- the app goes here -->
-    <div ui-view></div>
+    <head>
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles/app.css">
+        <link rel="stylesheet" href="/node_modules/angular-material/angular-material.css">
 
-    <script src="//cdn.polyfill.io/v2/polyfill.min.js?features=default,Array.prototype.find,MutationObserver"></script>
-    <script src="_bundles/vendors~sampleapp.js"></script>
-    <script src="_bundles/sampleapp.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
-</body>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body ng-app="demo">
+        <!-- the app goes here -->
+        <div ui-view></div>
+
+        <script src="//cdn.polyfill.io/v2/polyfill.min.js?features=default,Array.prototype.find,MutationObserver"></script>
+        <script src="_bundles/vendors~sampleapp.js"></script>
+        <script src="_bundles/sampleapp.js"></script>
+    </body>
+
 </html>
