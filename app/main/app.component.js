@@ -52,7 +52,7 @@ export const app = {
           <md-icon class="pt-5 fa fa-facebook"></md-icon>
         </div>
         
-        <span>translate..</span>
+        <div id="google_translate_element"></div>
 
       </div>
     </md-toolbar>
