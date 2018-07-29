@@ -105,7 +105,7 @@ export const login = {
                         
               <div layout="row">
                 <div flex></div>    
-                <span class="pt-30"><b>¿Todavía no tienes cuenta en Bit2Me?</b></span>
+                <p class="pt-30"><b>¿Todavía no tienes cuenta en Bit2Me?</b></p>
                 <div flex></div>
               </div>
               
