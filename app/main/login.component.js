@@ -99,12 +99,13 @@ export const login = {
                 <div flex></div>
                 <a href="#">Recordar contraseña</a>
               </div>
+              
               <div class="pt-30"></div>
-                <md-button flex class="md-primary md-raised btn-login">Entrar</md-button>
+              <md-button flex class="md-primary md-raised btn-login">Entrar</md-button>
                         
               <div layout="row">
                 <div flex></div>    
-                <p class="pt-30">¿Todavía no tienes  cuenta en Bit2Me?</p>
+                <p class="pt-30">¿Todavía no tienes cuenta en Bit2Me?</p>
                 <div flex></div>
               </div>
               

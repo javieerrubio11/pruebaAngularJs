@@ -35,7 +35,7 @@ export const app = {
   `
     <div ui-view></div>
     
-    <md-toolbar class="grey">
+    <md-toolbar class="gray" style="position: fixed; bottom: 0px;">
       <div class="md-toolbar-tools">
 
 
@@ -45,16 +45,20 @@ export const app = {
         
         <span md-truncate>@ 2018 bit2me.com</span>
         
-        <span>
-          <md-icon class="fa fa-twitter"></md-icon>
-          <md-icon class="fa fa-google"></md-icon>
-          <md-icon class="fa fa-linkedin"></md-icon>
-          <md-icon class="fa fa-facebook"></md-icon>
-        </span>
+        <div class="pl-10">
+          <md-icon class="pt-5 fa fa-twitter"></md-icon>
+          <md-icon class="pt-5 fa fa-google"></md-icon>
+          <md-icon class="pt-5 fa fa-linkedin"></md-icon>
+          <md-icon class="pt-5 fa fa-facebook"></md-icon>
+        </div>
         
         <span>translate..</span>
 
       </div>
     </md-toolbar>
+    
+    <md-button class="md-fab md-primary" aria-label="Support" style="position: fixed; bottom: 40px; right: 20px;">
+      <md-icon md-svg-src="/assets/icons/support-icon.svg"></md-icon>
+    </md-button>
   `
 }

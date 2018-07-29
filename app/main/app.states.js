@@ -1,6 +1,7 @@
 import {appTemplate, appController} from "./app.component";
 import {welcomeTemplate, welcomeController} from "./welcome.component";
 import {loginTemplate, loginController} from "./login.component";
+import {signupTemplate, signupController} from "./signup.component";
 
 /**
  * This is the parent state for the entire application.
@@ -30,9 +31,6 @@ export const welcomeState = {
 /**
  * This is the login state.  It is activated when the user navigates to /login, or if a unauthenticated
  * user attempts to access a protected state (or substate) which requires authentication. (see routerhooks/requiresAuth.js)
- *
- * It shows a fake login dialog and prompts the user to authenticate.  Once the user authenticates, it then
- * reactivates the state that the user originally came from.
  */
 export const loginState = {
   parent: 'app',
@@ -40,6 +38,17 @@ export const loginState = {
   url: '/login',
   component: 'login',
   resolve: { returnTo: returnTo }
+};
+
+/**
+ * This is the signup state.  It is activated when the user navigates to /signup
+ */
+export const signupState = {
+    parent: 'app',
+    name: 'signup',
+    url: '/signup',
+    component: 'signup',
+    resolve: { returnTo: returnTo }
 };
 
 /**
