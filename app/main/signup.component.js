@@ -61,7 +61,7 @@ export const signup = {
             </div>
           
             <div flex="50" flex-xs="100">
-              <p>Aceptamos cuentas de particulares, empresas y organizaciones.</p>
+              <p class="pb-20">Aceptamos cuentas de particulares, empresas y organizaciones.</p>
               <md-input-container class="md-block">
                 <label>Email</label>
                 <input ng-model="user.email">
@@ -74,16 +74,21 @@ export const signup = {
                 <md-icon ng-click="$ctrl.typePass = 'password'" ng-if="$ctrl.typePass == 'text'" class="fa fa-eye-slash"></md-icon>
               </md-input-container>
               
-              <div class="pt-30"></div>
+              <md-input-container class="md-block">
+                <label>Aceptar <a href="#">términos y condiciones</a></label>
+                <input ng-model="user.password">
+              </md-input-container>
+              
+              <div class="pt-20"></div>
               <md-button flex class="md-primary md-raised btn-login">Crear Cuenta</md-button>
                         
               <div layout="row">
                 <div flex></div>    
-                <p class="pt-30">¿Ya tienes cuenta en Bit2Me?</p>
+                <span class="pt-30"><b>¿Ya tienes cuenta en Bit2Me?</b></span>
                 <div flex></div>
               </div>
               
-              <md-button flex class="md-primary btn-registrate"><b>Login</b></md-button>
+              <md-button flex class="md-primary btn-registrate" ui-sref="login"><b>Login</b></md-button>
             </div>
           
           </div>

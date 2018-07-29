@@ -5,40 +5,40 @@
  * Then it sends the user back to the `returnTo` state, which is provided as a resolve data.
  */
 class LoginController {
-  constructor(AppConfig, AuthService, $state) {
-    this.usernames = AuthService.usernames;
+    constructor(AppConfig, AuthService, $state) {
+        this.usernames = AuthService.usernames;
 
-    this.credentials = {
-      username: AppConfig.emailAddress,
-      password: 'password'
-    };
+        this.credentials = {
+            username: AppConfig.emailAddress,
+            password: 'password'
+        };
 
-    this.user = {
-      email: '',
-      password: ''
+        this.user = {
+            email: '',
+            password: ''
+        }
+
+        this.typePass = 'password';
+
+        this.login = (credentials) => {
+            this.authenticating = true;
+
+            const returnToOriginalState = () => {
+                let state = this.returnTo.state();
+                let params = this.returnTo.params();
+                let options = Object.assign({}, this.returnTo.options(), { reload: true });
+                $state.go(state, params, options);
+            };
+
+            const showError = (errorMessage) =>
+            this.errorMessage = errorMessage;
+
+            AuthService.authenticate(credentials.username, credentials.password)
+                .then(returnToOriginalState)
+                .catch(showError)
+                .finally(() => this.authenticating = false);
+        }
     }
-
-    this.typePass = 'password';
-
-    this.login = (credentials) => {
-      this.authenticating = true;
-
-      const returnToOriginalState = () => {
-        let state = this.returnTo.state();
-        let params = this.returnTo.params();
-        let options = Object.assign({}, this.returnTo.options(), { reload: true });
-        $state.go(state, params, options);
-      };
-
-      const showError = (errorMessage) =>
-          this.errorMessage = errorMessage;
-
-      AuthService.authenticate(credentials.username, credentials.password)
-          .then(returnToOriginalState)
-          .catch(showError)
-          .finally(() => this.authenticating = false);
-    }
-  }
 }
 LoginController.$inject = ['AppConfig', 'AuthService', '$state'];
 
@@ -49,11 +49,11 @@ LoginController.$inject = ['AppConfig', 'AuthService', '$state'];
  * It shows errors if the authentication failed for any reason.
  */
 export const login = {
-  bindings: { returnTo: '<' },
+    bindings: { returnTo: '<' },
 
-  controller: LoginController,
+    controller: LoginController,
 
-  template:  `
+    template:  `
 
     <div layout="row" layout-padding>
       <div flex="10" flex-xs="5" flex-lg="20"></div>
@@ -82,7 +82,7 @@ export const login = {
             </div>
           
             <div flex="50" flex-xs="100">
-              <p>Introduce tu correo electrónico y contraseña para continuar.</p>
+              <p class="pb-20">Introduce tu correo electrónico y contraseña para continuar.</p>
               <md-input-container class="md-block">
                 <label>Email</label>
                 <input ng-model="user.email">
@@ -105,11 +105,11 @@ export const login = {
                         
               <div layout="row">
                 <div flex></div>    
-                <p class="pt-30">¿Todavía no tienes cuenta en Bit2Me?</p>
+                <span class="pt-30"><b>¿Todavía no tienes cuenta en Bit2Me?</b></span>
                 <div flex></div>
               </div>
               
-              <md-button flex class="md-primary btn-registrate"><b>Registrate</b></md-button>
+              <md-button flex class="md-primary btn-registrate" ui-sref="signup"><b>Registrate</b></md-button>
             </div>
           
           </div>

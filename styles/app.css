@@ -1,4 +1,8 @@
 
+body {
+    background: url('/assets/images/background.png') repeat;
+}
+
 .btn-registrate {
     width: 95%;
     border: rgb(63,81,181) solid 1px !important;
