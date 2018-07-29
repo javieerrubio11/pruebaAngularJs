@@ -5,42 +5,104 @@
  * Then it sends the user back to the `returnTo` state, which is provided as a resolve data.
  */
 class LoginController {
-    constructor(AppConfig, AuthService, $state) {
-        this.usernames = AuthService.usernames;
+  constructor(AppConfig, AuthService, $state, $mdDialog) {
+    this.usernames = AuthService.usernames;
 
-        this.credentials = {
-            username: AppConfig.emailAddress,
-            password: 'password'
+    this.credentials = {
+        username: AppConfig.emailAddress,
+        password: 'password'
+    };
+
+    this.user = {
+        email: '',
+        password: ''
+    }
+
+    this.typePass = 'password';
+
+    this.login = (credentials) => {
+        this.authenticating = true;
+
+        const returnToOriginalState = () => {
+            let state = this.returnTo.state();
+            let params = this.returnTo.params();
+            let options = Object.assign({}, this.returnTo.options(), { reload: true });
+            $state.go(state, params, options);
         };
 
-        this.user = {
-            email: '',
-            password: ''
-        }
+        const showError = (errorMessage) =>
+        this.errorMessage = errorMessage;
 
-        this.typePass = 'password';
-
-        this.login = (credentials) => {
-            this.authenticating = true;
-
-            const returnToOriginalState = () => {
-                let state = this.returnTo.state();
-                let params = this.returnTo.params();
-                let options = Object.assign({}, this.returnTo.options(), { reload: true });
-                $state.go(state, params, options);
-            };
-
-            const showError = (errorMessage) =>
-            this.errorMessage = errorMessage;
-
-            AuthService.authenticate(credentials.username, credentials.password)
-                .then(returnToOriginalState)
-                .catch(showError)
-                .finally(() => this.authenticating = false);
-        }
+        AuthService.authenticate(credentials.username, credentials.password)
+            .then(returnToOriginalState)
+            .catch(showError)
+            .finally(() => this.authenticating = false);
     }
+
+    this.showDialog = function(ev) {
+
+      this.dialog = $mdDialog.show({
+        controller: function DialogController($scope, $mdDialog) {
+          $scope.codigo = null;
+
+          $scope.closeDialog = function() {
+            $mdDialog.hide();
+          }
+        },
+        template: `
+          <md-dialog>
+            
+            <md-card style="margin: 0px;">
+              <md-card-title class="pl-80 pr-80">
+                <md-card-title-text>
+                  <div>
+                    <span class="md-headline"><b>Verificación de dos pasos</b></span>
+                    <span flex></span>
+                    <md-button class="md-icon-button md-primary" ng-click="closeDialog()">
+                      <md-icon class="fa fa-times"></md-icon>
+                    </md-button>
+                  </div>
+                </md-card-title-text>
+              </md-card-title>
+              
+              <md-divider></md-divider>
+              
+              <md-card-content class="pl-80 pr-80">
+                  
+                <p>Introduce el código de verificación generado<br> por  su teléfono que termina en +XX XX XXX <br>XX86.</p>
+                  
+                <md-input-container class="md-block">
+                  <label>Código</label>
+                  <input ng-model="codigo">
+                </md-input-container>
+                  
+              </md-card-content>
+              
+              <md-divider></md-divider>
+              
+              <md-card-action class="pl-80 pr-80">
+                <div class="pb-20"></div>
+                <md-button ng-disabled="codigo == null || codigo == ''" flex class="md-primary md-raised btn-login">
+                 Verificar
+                </md-button>
+                <div class="pt-20"></div>
+              </md-card-action>
+            </md-card>
+          </md-dialog>
+        `,
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:true,
+      })
+      .then(function(answer) {
+          // console.log('okey');
+      }, function() {
+          // console.log('close');
+      });
+    };
+  }
 }
-LoginController.$inject = ['AppConfig', 'AuthService', '$state'];
+LoginController.$inject = ['AppConfig', 'AuthService', '$state', '$mdDialog'];
 
 /**
  * This component renders a faux authentication UI
@@ -55,7 +117,7 @@ export const login = {
 
     template:  `
 
-    <div layout="row" layout-padding>
+    <div layout="row" layout-padding class="pb-50">
       <div flex="10" flex-xs="5" flex-lg="20"></div>
     
       <md-card flex="80" flex-xs="90" flex-lg="60">
@@ -101,7 +163,12 @@ export const login = {
               </div>
               
               <div class="pt-30"></div>
-              <md-button flex class="md-primary md-raised btn-login">Entrar</md-button>
+              
+              <md-button flex class="md-primary md-raised btn-login"
+               ng-disabled="user.email == null || user.password == null"
+               ng-click="$ctrl.showDialog($event)">
+               Login
+              </md-button>
                         
               <div layout="row">
                 <div flex></div>    
@@ -118,6 +185,5 @@ export const login = {
       
       <div flex="10" flex-xs="5" flex-lg="20"></div>
     </div>
-
     `
 };

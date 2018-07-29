@@ -34,7 +34,7 @@ export const signup = {
 
     template:  `
 
-    <div layout="row" layout-padding>
+    <div layout="row" layout-padding class="pb-50">
       <div flex="10" flex-xs="5" flex-lg="20"></div>
     
       <md-card flex="80" flex-xs="90" flex-lg="60">
@@ -75,12 +75,15 @@ export const signup = {
               </md-input-container>
               
               <md-radio-group ng-model="user.terms">
-                <md-radio-button value="true" class="md-primary">Aceptar <a href="#">términos y condiciones</md-radio-button>
+                <md-radio-button value="true" class="md-primary">Aceptar <a href="#">términos y condiciones</a></md-radio-button>
               </md-radio-group>
               
               <div class="pt-20"></div>
-              
-              <md-button flex class="md-primary md-raised btn-login">Crear Cuenta</md-button>
+
+              <md-button flex class="md-primary md-raised btn-login"
+               ng-disabled="user.email == null || user.password == null || user.terms == null">
+               Crear Cuenta
+              </md-button>
                         
               <div layout="row">
                 <div flex></div>    
