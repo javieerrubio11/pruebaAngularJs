@@ -5,7 +5,7 @@
  * Then it sends the user back to the `returnTo` state, which is provided as a resolve data.
  */
 class SignupController {
-    constructor(AppConfig, AuthService, $state) {
+    constructor(AppConfig, AuthService, $state, $mdDialog) {
         this.user = {
             email: '',
             password: '',
@@ -17,9 +17,21 @@ class SignupController {
         this.signup = (credentials) => {
             console.log('signup user', user);
         }
+
+        this.showAlertSingup = function(ev) {
+            $mdDialog.show(
+                $mdDialog.alert()
+                    .parent(angular.element(document.body))
+                    .clickOutsideToClose(true)
+                    .title('Información')
+                    .textContent('Usuario registrado satisfactoriamente.')
+                    .ok('Aceptar')
+                    .targetEvent(ev)
+            );
+        };
     }
 }
-SignupController.$inject = ['AppConfig', 'AuthService', '$state'];
+SignupController.$inject = ['AppConfig', 'AuthService', '$state', '$mdDialog'];
 
 /**
  * This component renders a faux authentication UI
@@ -81,7 +93,8 @@ export const signup = {
               <div class="pt-20"></div>
 
               <md-button flex class="md-primary md-raised btn-login"
-               ng-disabled="user.email == null || user.password == null || user.terms == null">
+               ng-disabled="user.email == null || user.password == null || user.terms == null"
+               ng-click="$ctrl.showAlertSingup(event)">
                Crear Cuenta
               </md-button>
                         
