@@ -1,32 +1,70 @@
+/**
+ * The controller for the `welcome' component
+ */
+class WelcomeController {
+    constructor(AppConfig, $state, $http) {
+        this.articles = [];
+        var vm = this;
+
+        $http({
+            method: 'GET',
+            url: 'https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=2662abc474754fffbcea7d2f4ab1552e'
+        }).then(function successCallback(response) {
+            console.log(response.data);
+            angular.copy(response.data.articles, vm.articles);
+        }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+        });
+    }
+}
+WelcomeController.$inject = ['AppConfig', '$state', '$http'];
+
 export const welcome = {
+  bindings: { returnTo: '<' },
+
+  controller: WelcomeController,
+
   template: `
-    <div class="container-fluid">
+  <div layout="row" layout-padding class="pb-50">
+    <div flex="10" flex-xs="5" flex-lg="20"></div>
+  
+    <md-card flex="80" flex-xs="90" flex-lg="60">
     
-      <h3>UI-Router Sample App</h3>
-    
-      <p>Welcome to the sample app!</p>
-      <p>This is a demonstration app intended to highlight some patterns that can be used within UI-Router.
-        These patterns should help you to to build cohesive, robust apps.  Additionally, this app uses state-vis
-        to show the tree of states, and a transition log visualizer.</p>
-    
-      <h4>App Overview</h4>
-      <p>
-        First, start exploring the application's functionality at a high level by activating
-        one of the three submodules: Messages, Contacts, or Preferences. If you are not already logged in,
-        you will be taken to an authentication screen (the authentication is fake; the password is "password")
-        <div>
-          <button class="btn btn-primary" ui-sref="mymessages"><i class="fa fa-envelope"></i><span>Messages</span></button>
-          <button class="btn btn-primary" ui-sref="contacts"><i class="fa fa-users"></i><span>Contacts</span></button>
-          <button class="btn btn-primary" ui-sref="prefs"><i class="fa fa-cogs"></i><span>Preferences</span></button>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Bienvenido</span>
+        </md-card-title-text>
+      </md-card-title>
+      
+      <md-divider></md-divider>
+      
+      <md-card-content>
+      
+        <h3>Páginas disponibles</h3>
+      
+        <div layout="row" class="pb-10">
+          <div flex></div>
+          <md-button ui-sref="login" class="md-raised md-primary">Login</md-button>
+          <md-button ui-sref="signup" class="md-raised md-primary">Signup</md-button>
+          <div flex></div>
         </div>
-      </p>
+        
+        <md-divider></md-divider>
+      
+        <h3>Artículos ({{$ctrl.articles.length}})</h3>
+        
+        <ul>
+          <li ng-repeat="item in $ctrl.articles">
+            {{item.title}} 
+            <a ng-href="{{item.url}}" target="_blank"><md-icon class="fa fa-link md-primary"></md-icon></a>
+          </li>
+        </ul>
+        
+      </md-card-content>
+    </md-card>
     
-      <h4>Patterns and Recipes</h4>
-      <ul>
-        <li>Require Authentication</li>
-        <li>Previous State</li>
-        <li>Redirect Hook</li>
-        <li>Default Param Values</li>
-      </ul>
-    </div>`
+    <div flex="10" flex-xs="5" flex-lg="20"></div>
+  </div>
+  `
 };

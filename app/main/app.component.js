@@ -43,16 +43,16 @@ export const app = {
         
         <div flex></div>
         
-        <span md-truncate>@ 2018 bit2me.com</span>
+        <span md-truncate >@ 2018 bit2me.com</span>
         
-        <div class="pl-10">
+        <div class="pl-10 hide-xs hide-sm">
           <md-icon class="pt-5 fa fa-twitter"></md-icon>
           <md-icon class="pt-5 fa fa-google"></md-icon>
           <md-icon class="pt-5 fa fa-linkedin"></md-icon>
           <md-icon class="pt-5 fa fa-facebook"></md-icon>
         </div>
         
-        <div id="google_translate_element"></div>
+        <div class="hide-xs hide-sm" id="google_translate_element"></div>
 
       </div>
     </md-toolbar>

@@ -26,7 +26,6 @@ import "../global/global.module";
 import "../main/main.module";
 import "../contacts/contacts.module";
 import "../mymessages/mymessages.module";
-import "../prefs/prefs.module";
 
 // Google analytics
 import '../util/ga';

@@ -77,39 +77,3 @@ function returnTo($transition$) {
   // If the fromState's name is empty, then this was the initial transition. Just return them to the profile state
   return $state.target('profile');
 }
-
-
-
-// Future State (Placeholder) for the contacts module
-export const contactsFutureState = {
-  parent: 'app',
-  name: 'contacts.**',
-  url: '/contacts',
-  lazyLoad: function(transition) {
-    const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
-    return import('../contacts/contacts.module').then(mod => $ocLazyLoad.load(mod.CONTACTS_MODULE))
-  }
-};
-
-// Future State (Placeholder) for the prefs module
-export const prefsFutureState = {
-  parent: 'app',
-  name: 'prefs.**',
-  url: '/prefs',
-  lazyLoad: function(transition) {
-    const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
-    return import('../prefs/prefs.module').then(mod => $ocLazyLoad.load(mod.PREFS_MODULE))
-  }
-};
-
-// Future State (Placeholder) for the mymessages module
-export const mymessagesFutureState = {
-  parent: 'app',
-  name: 'mymessages.**',
-  url: '/mymessages',
-  lazyLoad: function(transition) {
-    const $ocLazyLoad = transition.injector().get('$ocLazyLoad');
-    return import('../mymessages/mymessages.module').then(mod => $ocLazyLoad.load(mod.MYMESSAGES_MODULE))
-  }
-};
-
