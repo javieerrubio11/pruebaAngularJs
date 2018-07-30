@@ -70,8 +70,8 @@ export const signup = {
               <md-input-container class="md-block">
                 <label>Contraseña</label>
                 <input type="{{$ctrl.typePass}}" ng-model="user.password">
-                <md-icon ng-click="$ctrl.typePass = 'text'" ng-if="$ctrl.typePass == 'password'" class="fa fa-eye"></md-icon>
-                <md-icon ng-click="$ctrl.typePass = 'password'" ng-if="$ctrl.typePass == 'text'" class="fa fa-eye-slash"></md-icon>
+                <md-icon ng-click="$ctrl.typePass = 'text'" ng-if="$ctrl.typePass == 'password'" class="fa fa-eye click-pointer"></md-icon>
+                <md-icon ng-click="$ctrl.typePass = 'password'" ng-if="$ctrl.typePass == 'text'" class="fa fa-eye-slash click-pointer"></md-icon>
               </md-input-container>
               
               <md-radio-group ng-model="user.terms">

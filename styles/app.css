@@ -24,6 +24,10 @@ body {
     max-width: 500px;
 }
 
+.click-pointer {
+    cursor: pointer;
+}
+
 .pt-5 { padding-top: 5px !important; }
 .pt-10 { padding-top: 10px !important; }
 .pt-20 { padding-top: 20px !important; }

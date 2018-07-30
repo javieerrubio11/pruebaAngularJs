@@ -37,13 +37,13 @@ export const app = {
     
     <md-toolbar class="gray" style="position: fixed; bottom: 0px;">
       <div class="md-toolbar-tools">
+        <md-icon ui-sref="welcome" class="fa fa-home fa-2x click-pointer"></md-icon>
 
-
-        <span md-truncate>Privacidad | Legal | Términos y condiciones</span>
+        <span md-truncate class="pl-10">Privacidad | Legal | Términos y condiciones</span>
         
         <div flex></div>
-        
-        <span md-truncate >@ 2018 bit2me.com</span>
+
+        <span md-truncate class="hide-xs hide-sm">@ 2018 bit2me.com</span>
         
         <div class="pl-10 hide-xs hide-sm">
           <md-icon class="pt-5 fa fa-twitter"></md-icon>
