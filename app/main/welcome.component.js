@@ -33,9 +33,9 @@ export const welcome = {
 
   template: `
   <div layout="row" layout-padding class="pb-50">
-    <div flex="10" flex-xs="5" flex-lg="20"></div>
+    <div flex="5" flex-xs="5" flex-lg="10"></div>
   
-    <md-card flex="80" flex-xs="90" flex-lg="60">
+    <md-card flex="90" flex-xs="90" flex-lg="80">
     
       <md-card-title>
         <md-card-title-text>
@@ -59,18 +59,27 @@ export const welcome = {
         <md-divider></md-divider>
       
         <h3>Artículos ({{$ctrl.articles.length}})</h3>
-        
-        <ul>
-          <li ng-repeat="item in $ctrl.articles">
-            {{item.title}} 
-            <a ng-href="{{item.url}}" target="_blank"><md-icon class="fa fa-link md-primary"></md-icon></a>
-          </li>
-        </ul>
+                
+        <div layout="row" layout-wrap  layout-align="center start">
+          <md-card flex="30" flex-sm="45" flex-xs="100" ng-repeat="item in $ctrl.articles">
+            <img ng-src="{{item.urlToImage}}" class="md-card-image" alt="Washed Out">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">{{item.title}}</span>
+              </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+              <p>
+                {{item.description}}
+              </p>
+            </md-card-content>
+          </md-card>
+        </div>
         
       </md-card-content>
     </md-card>
     
-    <div flex="10" flex-xs="5" flex-lg="20"></div>
+    <div flex="5" flex-xs="5" flex-lg="10"></div>
   </div>
   `
 };
