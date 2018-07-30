@@ -24,8 +24,6 @@
 // Each module registers it states/services/components, with the `ngmodule`
 import "../global/global.module";
 import "../main/main.module";
-import "../contacts/contacts.module";
-import "../mymessages/mymessages.module";
 
 // Google analytics
 import '../util/ga';
