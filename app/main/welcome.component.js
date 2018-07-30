@@ -2,7 +2,7 @@
  * The controller for the `welcome' component
  */
 class WelcomeController {
-    constructor(AppConfig, $state, $http) {
+    constructor(AppConfig, $state, $http, $log) {
         this.articles = [];
         var vm = this;
 
@@ -10,15 +10,21 @@ class WelcomeController {
             method: 'GET',
             url: 'https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=2662abc474754fffbcea7d2f4ab1552e'
         }).then(function successCallback(response) {
-            console.log(response.data);
             angular.copy(response.data.articles, vm.articles);
         }, function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
+            $log.warn(response);
         });
+
+
+        // Log messages
+        $log.debug("Some debug");
+        $log.info("Some info");
+        $log.log("Some log");
+        $log.warn("Some warning");
+        $log.error("Some error");
     }
 }
-WelcomeController.$inject = ['AppConfig', '$state', '$http'];
+WelcomeController.$inject = ['AppConfig', '$state', '$http', '$log'];
 
 export const welcome = {
   bindings: { returnTo: '<' },
